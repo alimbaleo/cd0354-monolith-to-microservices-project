@@ -55,6 +55,7 @@ router.get('/verification',
 router.post('/login', async (req: Request, res: Response) => {
   const email = req.body.email;
   const password = req.body.password;
+  console.debug("login endpoint...........");
 
   if (!email || !EmailValidator.validate(email)) {
     return res.status(400).send({auth: false, message: 'Email is required or malformed.'});
@@ -83,6 +84,7 @@ router.post('/login', async (req: Request, res: Response) => {
 router.post('/', async (req: Request, res: Response) => {
   const email = req.body.email;
   const plainTextPassword = req.body.password;
+  console.debug("rrefister endpoint...........");
 
   if (!email || !EmailValidator.validate(email)) {
     return res.status(400).send({auth: false, message: 'Email is missing or malformed.'});

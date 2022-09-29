@@ -8,6 +8,7 @@ import * as c from '../../../../config/config';
 const router: Router = Router();
 
 export function requireAuth(req: Request, res: Response, next: NextFunction) {
+  console.debug("require auth endpoint...........");
   if (!req.headers || !req.headers.authorization) {
     return res.status(401).send({message: 'No authorization headers.'});
   }
@@ -28,6 +29,7 @@ export function requireAuth(req: Request, res: Response, next: NextFunction) {
 
 // Get all feed items
 router.get('/', async (req: Request, res: Response) => {
+  console.debug(" get all feeds endpoint...........");
   const items = await FeedItem.findAndCountAll({order: [['id', 'DESC']]});
   items.rows.map((item) => {
     if (item.url) {
@@ -40,6 +42,8 @@ router.get('/', async (req: Request, res: Response) => {
 // Get a feed resource
 router.get('/:id',
     async (req: Request, res: Response) => {
+      console.debug("rget single feed endpoint...........");
+
       const {id} = req.params;
       const item = await FeedItem.findByPk(id);
       res.send(item);
@@ -49,6 +53,8 @@ router.get('/:id',
 router.get('/signed-url/:fileName',
     requireAuth,
     async (req: Request, res: Response) => {
+      console.debug("get signed url endpoint...........");
+
       const {fileName} = req.params;
       const url = AWS.getPutSignedUrl(fileName);
       res.status(201).send({url: url});
@@ -60,6 +66,7 @@ router.post('/',
     async (req: Request, res: Response) => {
       const caption = req.body.caption;
       const fileName = req.body.url; // same as S3 key name
+      console.debug("post feed endpoint...........");
 
       if (!caption) {
         return res.status(400).send({message: 'Caption is required or malformed.'});

@@ -10,6 +10,7 @@ router.use('/auth', AuthRouter);
 router.get('/');
 
 router.get('/:id', async (req: Request, res: Response) => {
+  console.debug("get user endpoint...........");
   const {id} = req.params;
   const item = await User.findByPk(id);
   res.send(item);
