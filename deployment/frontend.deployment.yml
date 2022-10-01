@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: udagram-frontend-container
-        image: alimbaleo/udagram-frontend:v4
+        image: alimbaleo/udagram-frontend:latest
         ports:
         - containerPort: 80

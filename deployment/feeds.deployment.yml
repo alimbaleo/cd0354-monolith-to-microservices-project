@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-feed
-        image: alimbaleo/udagram-api-feed:v3
+        image: alimbaleo/udagram-api-feed:latest
         ports:
         - containerPort: 8080
         imagePullPolicy: Always

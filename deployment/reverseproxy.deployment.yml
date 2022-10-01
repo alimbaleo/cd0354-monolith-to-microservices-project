@@ -15,7 +15,7 @@ spec:
         service: reverseproxy
     spec:
       containers:
-      - image: alimbaleo/reverseproxy:v2
+      - image: alimbaleo/reverseproxy:latest
         name: reverseproxy-container
         imagePullPolicy: Always          
         resources:
